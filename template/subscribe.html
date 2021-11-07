@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{%block title%}Homepage{% endblock title %}
+{% block basecontent %}{% endblock basecontent %}
+
+{%block bodycontent%}
+<form method="POST">
+    {% csrf_token %}
+
+    <!--Django rendering forms manually-->
+
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+    <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }} 
+        {{ field }}
+    </div>
+    {% endfor %}
+
+      <button type="reset" class="btn btn-secondary">Reset</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock bodycontent%}
+
+
+</html>
